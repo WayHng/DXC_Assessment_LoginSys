@@ -58,7 +58,7 @@ public class SecSecurityConfig {
                 .loginProcessingUrl("/perform_login")
                 .defaultSuccessUrl("/homepage.html", true)
                 .failureUrl("/login.html?error=true")
-                .failureHandler(authenticationFailureHandler())
+                // .failureHandler(authenticationFailureHandler())
         ).logout((logout) -> logout.permitAll()
                 // .logoutUrl("/perfrom_logout")
                 .logoutSuccessUrl("/login.html?logout=true")
