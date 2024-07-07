@@ -9,8 +9,9 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.util.Calendar;
 
@@ -20,10 +21,10 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
     public void onAuthenticationFailure(HttpServletRequest httpServletRequest, 
             HttpServletResponse httpServletResponse, AuthenticationException e) 
             throws IOException {
-        httpServletResponse.setStatus(HttpStatus.UNATHORIZED.value());
+        httpServletResponse.setStatus(HttpStatus.UNAUTHORIZED.value());
         
         String jsonPayload = "{\"message\" : \"%s\", \"timestamp\" : \"%s\"}";
         httpServletResponse.getOutputStream().println(
-                String.format(jsonPayload, e.getMessage, Calendar.getInstance().getTime()));
+                String.format(jsonPayload, e.getMessage(), Calendar.getInstance().getTime()));
     }
 }

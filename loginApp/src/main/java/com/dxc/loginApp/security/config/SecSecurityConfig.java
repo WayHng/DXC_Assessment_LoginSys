@@ -43,29 +43,28 @@ public class SecSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity _http) throws Exception {
-        _http.csrf()
-                .disable()
-                .authorizeRequests()
-                .antMatchers("/manager/**")
+        _http.authorizeHttpRequests((requests) -> requests.requestMatchers("/manager/**")
                 .hasRole("MANAGER")
-                .antMatchers("/anonymous*")
-                .anonymous
-                .antMatchers("/login*")
+                .requestMatchers("/anonymous*")
+                .anonymous()
+                .requestMatchers("/login*")
+                .permitAll()
+                .requestMatchers("/h2-console")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
-                .and()
-                .formLogin()
-                .loginPage("login.html")
+        ).formLogin((form) -> form.loginPage("/login.html")
+                .permitAll()
                 .loginProcessingUrl("/perform_login")
                 .defaultSuccessUrl("/homepage.html", true)
                 .failureUrl("/login.html?error=true")
                 .failureHandler(authenticationFailureHandler())
-                .and()
-                .logout()
-                .logoutUrl("/perform_logout")
+        ).logout((logout) -> logout.permitAll()
+                .logoutUrl("/perfrom_logout")
                 .deleteCookies("JSESSIONID")
-                .logoutSuccessHandler(logoutSuccessHandler());
+                .logoutSuccessHandler(logoutSuccessHandler())
+        );
+        
         return _http.build();
     }
 
@@ -76,11 +75,11 @@ public class SecSecurityConfig {
 
     @Bean
     public AuthenticationFailureHandler authenticationFailureHandler() {
-        return CustomAuthenticationFailureHandler();
+        return new CustomAuthenticationFailureHandler();
     }
 
     @Bean
     public LogoutSuccessHandler logoutSuccessHandler() {
-        return CustomLogoutSeccessHandler();
+        return new CustomLogoutSuccessHandler();
     }
 }

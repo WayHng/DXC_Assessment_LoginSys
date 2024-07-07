@@ -20,11 +20,11 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(final ViewControllerRegistry registry) {
-        registry.addViewControllers("/anonymous.html");
-        registry.addViewControllers("/login.html");
-        registry.addViewControllers("/homepage.html");
-        registry.addViewControllers("/manager/managerpage.html");
-        registry.addViewControllers("/accessDenied.html");
+        registry.addViewController("/anonymous.html");
+        registry.addViewController("/login.html");
+        registry.addViewController("/homepage.html");
+        registry.addViewController("/manager/managerpage.html");
+        registry.addViewController("/accessDenied.html");
     }
 
     @Bean

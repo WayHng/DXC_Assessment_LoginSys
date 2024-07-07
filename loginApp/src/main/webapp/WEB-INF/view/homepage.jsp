@@ -9,8 +9,8 @@
 
         <security:authorize access="hasAnyRole('USER', 'MANAGER')">
             Welcome!
-            Name: <c:out value="${username}" />
-            Role: <c:out value="${role}" />
+            <!-- Name: <c:out value="${username}" />
+            Role: <c:out value="${role}" /> -->
         </security:authorize>
 
         <security:authorize access="hasRole('MANAGER')">

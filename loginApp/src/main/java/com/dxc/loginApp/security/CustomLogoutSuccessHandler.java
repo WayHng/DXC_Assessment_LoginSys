@@ -9,10 +9,11 @@ import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuc
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.core.Authentication;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+
 import java.io.IOException;
-import javax.servlet.ServletException;
 
 public class CustomLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler 
         implements LogoutSuccessHandler {
