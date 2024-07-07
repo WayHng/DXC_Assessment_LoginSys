@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhmtl" xmls:th="https://www.thymeleaf.org"
+        xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head>
+        <title>Home Page</title>
+    </head>
+    <body>
+        <h1>Homepage</h1>
+
+        <div sec:authorize="isAuthenticated()">
+            Welcome <span sec:authentication="name">NameHolder</span>
+            <br />
+            Your roles are: <span sec:authentication="principal.authorities">Placeholder</span>
+        </div>
+
+        <div sec:authorize="hasRole('MANAGER')">
+            <a th:href="@{/manager/managerpage.html}">Manager Page</a>
+        </div>
+
+        <form th:action="@{/logout}" method="POST">
+            <input type="submit" value="Logout" />
+        </form>
+
+    </body>
+</html>

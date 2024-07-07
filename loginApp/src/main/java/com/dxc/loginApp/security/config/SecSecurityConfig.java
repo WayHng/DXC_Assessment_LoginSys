@@ -60,9 +60,10 @@ public class SecSecurityConfig {
                 .failureUrl("/login.html?error=true")
                 .failureHandler(authenticationFailureHandler())
         ).logout((logout) -> logout.permitAll()
-                .logoutUrl("/perfrom_logout")
+                // .logoutUrl("/perfrom_logout")
+                .logoutSuccessUrl("/login.html?logout=true")
                 .deleteCookies("JSESSIONID")
-                .logoutSuccessHandler(logoutSuccessHandler())
+                // .logoutSuccessHandler(logoutSuccessHandler())
         );
         
         return _http.build();
