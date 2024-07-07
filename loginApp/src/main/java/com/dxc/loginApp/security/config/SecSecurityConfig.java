@@ -18,6 +18,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
+import com.dxc.loginApp.security.CustomAuthenticationFailureHandler;
+import com.dxc.loginApp.security.CustomLogoutSuccessHandler;
+
 @Configuration
 @EnableWebSecurity
 public class SecSecurityConfig {
